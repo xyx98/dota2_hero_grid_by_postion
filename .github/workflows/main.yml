@@ -21,4 +21,5 @@ jobs:
           stratz_api_key: ${{ secrets.stratz_api_key }}
         run: 
           python dota2_hero_grid.py fetch
+          
           python dota2_hero_grid.py genarate -o by_name -t 0.8 -s 1
