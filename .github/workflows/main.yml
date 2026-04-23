@@ -43,6 +43,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run:
+          gh release delete --cleanup-tag --yes release || true
+          sleep 15
           RELDATE="$(date +'%Y-%m-%d %H:%M')"
           NAME="Auto-Build $RELDATE"
           gh release create "lastest" --target "main" --title "$NAME" dota2_hero_grid.zip
