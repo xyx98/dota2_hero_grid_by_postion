@@ -86,7 +86,7 @@ def get_api_key() -> str:
         with open(r"stratz_api_token.json") as file:
             api_key=json.load(file)["token"]
     else:
-        api_key=os.environ.get("stratz_api_token")
+        api_key=os.environ.get("stratz_api_key")
     if api_key is None:
         raise RuntimeError("no stratz_api_token_found.")
     return api_key
