@@ -1,0 +1,24 @@
+name: 定时任务示例
+
+on:
+  schedule:
+   - cron: '0 0 * * 2,5'
+  workflow_dispatch:
+    
+jobs:
+  genarate:
+    name: dota2 hero grid
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13' 
+      - run:
+          pip install httpx
+      - name : gen
+        env:
+          stratz_api_key: ${{ secrets.stratz_api_key }}
+        run: 
+          python dota2_hero_grid.py fetch
+          python dota2_hero_grid.py genarate -o by_name -t 0.8 -s 1
