@@ -43,7 +43,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run:
-          gh release delete --cleanup-tag --yes release || true
+          gh release delete --cleanup-tag --yes "lastest" || true
           sleep 15
           RELDATE="$(date +'%Y-%m-%d %H:%M')"
           NAME="Auto-Build $RELDATE"
