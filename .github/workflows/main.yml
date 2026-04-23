@@ -18,7 +18,7 @@ jobs:
           pip install httpx
       - name : gen
         env:
-          stratz_api_key: ${{ secrets.stratz_api_key }}
+          stratz_api_key: ${{ secrets.STRATZ_API_TOKEN }}
         run: 
           python dota2_hero_grid.py fetch
           
