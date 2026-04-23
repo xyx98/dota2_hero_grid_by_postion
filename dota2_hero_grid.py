@@ -59,7 +59,7 @@ query HeroWinDayStats(
 }
 '''
 
-ranks_cn=["先锋","卫士","中军","统帅","传奇","千古流芳","超凡入圣","冠绝一世"]
+ranks_cn=["先锋","卫士","中军","统帅","传奇","万古流芳","超凡入圣","冠绝一世"]
 
 ranks=["HERALD","GUARDIAN","CRUSADER","ARCHON","LEGEND","ANCIENT","DIVINE","IMMORTAL"]
 
