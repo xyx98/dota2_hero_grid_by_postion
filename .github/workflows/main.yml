@@ -2,7 +2,7 @@ name: genarate dota2 hero grid
 
 on:
   schedule:
-   - cron: '0 0 * * 2,5'
+   - cron: '0 0 * * *'
   workflow_dispatch:
     
 jobs:
@@ -10,16 +10,35 @@ jobs:
     name: dota2 hero grid
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
         with:
           python-version: '3.13' 
       - run:
           pip install httpx
-      - name : gen
+      - name : genarate
         env:
           stratz_api_key: ${{ secrets.STRATZ_API_TOKEN }}
         run: 
           python dota2_hero_grid.py fetch
           
           python dota2_hero_grid.py genarate -o by_name -t 0.8 -s 1
+
+          python dota2_hero_grid.py genarate -o by_match_count -t 0.8 -s 2
+
+          python dota2_hero_grid.py genarate -o by_win_count -t 0.8 -s 3
+
+          python dota2_hero_grid.py genarate -o by_win_rate -t 0.8 -s 4
+      - name : pack
+        run:
+          zip -r dota2_hero_grid.zip by_name by_match_count by_win_count by_win_rate
+      - name: release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run:
+          RELDATE="$(date +'%Y-%m-%d %H:%M')"
+          NAME="Auto-Build $RELDATE"
+          TAGNAME="v1.0"
+          gh release create "$TAGNAME" --target "main" --title "$NAME" dota2_hero_grid.zip
+          
+        
