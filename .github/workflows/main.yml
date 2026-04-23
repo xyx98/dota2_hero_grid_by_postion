@@ -32,6 +32,13 @@ jobs:
       - name : pack
         run:
           zip -r dota2_hero_grid.zip by_name by_match_count by_win_count by_win_rate
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v7
+        with:
+          name: dota2_hero_grid
+          path: dota2_hero_grid.zip
+          compression-level: 9
+          retention-days: 7
       - name: release
         env:
           GITHUB_TOKEN: ${{ github.token }}
