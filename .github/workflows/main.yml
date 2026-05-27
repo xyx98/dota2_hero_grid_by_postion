@@ -2,7 +2,7 @@ name: genarate dota2 hero grid
 
 on:
   schedule:
-   - cron: '0 0 * * *'
+   - cron: '0 0 * * 1'
   workflow_dispatch:
     
 jobs:
@@ -47,6 +47,6 @@ jobs:
           
           sleep 15
           
-          gh release create "latest" --target "main" --title "$(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M:%S')" --notes "$(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M:%S')" dota2_hero_grid.zip
+          gh release create "latest" --target "main" --title "$(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M:%S')" --notes "$(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M:%S')" -p dota2_hero_grid.zip
           
         
